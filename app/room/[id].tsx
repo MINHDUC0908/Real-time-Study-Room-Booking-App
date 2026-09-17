@@ -359,6 +359,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: SPACING.lg,
         paddingTop: SPACING.md,
         gap: SPACING.md,
+        elevation: 8,
+        shadowColor: '#0F172A',
+        shadowOffset: { width: 0, height: -3 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
     },
     selectedSlotInfo: {
         flex: 1,

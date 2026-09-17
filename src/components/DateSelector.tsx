@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
         paddingVertical: SPACING.md,
         paddingHorizontal: SPACING.md,
         borderRadius: BORDER_RADIUS.md,
-        backgroundColor: COLORS.surface,
-        borderWidth: 1.5,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
         borderColor: COLORS.border,
         minWidth: 64,
         gap: 2,
@@ -78,14 +78,19 @@ const styles = StyleSheet.create({
     dayItemSelected: {
         backgroundColor: COLORS.primary,
         borderColor: COLORS.primary,
+        elevation: 2,
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
     },
     dayLabel: {
         fontSize: FONT_SIZE.xs,
-        color: COLORS.textMuted,
+        color: COLORS.textSecondary,
         fontWeight: FONT_WEIGHT.medium,
     },
     dayLabelSelected: {
-        color: 'rgba(255,255,255,0.85)',
+        color: 'rgba(255,255,255,0.9)',
     },
     dayNum: {
         fontSize: FONT_SIZE.xl,
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
         color: COLORS.textMuted,
     },
     monthLabelSelected: {
-        color: 'rgba(255,255,255,0.75)',
+        color: 'rgba(255,255,255,0.85)',
     },
     selectedDot: {
         width: 5,

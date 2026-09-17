@@ -24,7 +24,7 @@ const FilterChip = memo<FilterChipProps>(({ label, selected, onPress, color, sty
             style={[
                 styles.chip,
                 selected && {
-                    backgroundColor: accentColor + '33',  // 20% opacity
+                    backgroundColor: '#EFF6FF',
                     borderColor: accentColor,
                 },
                 style,
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: SPACING.md,
         paddingVertical: SPACING.xs + 2,
         borderRadius: BORDER_RADIUS.full,
-        borderWidth: 1.5,
+        borderWidth: 1,
         borderColor: COLORS.border,
-        backgroundColor: COLORS.surface,
+        backgroundColor: '#FFFFFF',
         marginRight: SPACING.sm,
         marginBottom: SPACING.sm,
     },

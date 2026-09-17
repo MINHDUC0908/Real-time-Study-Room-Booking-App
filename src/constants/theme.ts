@@ -1,48 +1,48 @@
-// Bảng màu và design tokens cho toàn bộ ứng dụng
+// Bảng màu sáng (Light theme), hiện đại, thanh lịch cho môi trường trường đại học VKU
 export const COLORS = {
-    // Màu nền chính (dark mode)
-    background: '#0F172A',
-    surface: '#1E293B',
-    surfaceElevated: '#263347',
-    card: '#1E293B',
-    border: '#334155',
+    // Màu nền chính (light mode sạch sẽ, tươi sáng)
+    background: '#F8FAFC',
+    surface: '#FFFFFF',
+    surfaceElevated: '#F1F5F9',
+    card: '#FFFFFF',
+    border: '#E2E8F0',
 
-    // Màu chủ đạo
-    primary: '#3B82F6',       // Xanh dương
-    primaryDark: '#2563EB',
-    primaryLight: '#93C5FD',
-    secondary: '#6366F1',     // Tím indigo
+    // Màu chủ đạo (Xanh đại học VKU hiện đại, uy tín)
+    primary: '#2563EB',
+    primaryDark: '#1D4ED8',
+    primaryLight: '#EFF6FF',
+    secondary: '#0284C7',
 
     // Màu trạng thái
-    success: '#10B981',       // Xanh lá — Available
-    successLight: '#D1FAE5',
-    error: '#EF4444',         // Đỏ — Occupied / Lỗi
+    success: '#16A34A',
+    successLight: '#DCFCE7',
+    error: '#DC2626',
     errorLight: '#FEE2E2',
-    warning: '#F59E0B',       // Vàng — Cảnh báo
+    warning: '#D97706',
     warningLight: '#FEF3C7',
-    info: '#3B82F6',
+    info: '#2563EB',
 
-    // Màu text
-    textPrimary: '#F1F5F9',
-    textSecondary: '#94A3B8',
-    textMuted: '#64748B',
-    textDisabled: '#475569',
+    // Màu text (sắc nét, độ tương phản cao, dễ đọc)
+    textPrimary: '#0F172A',
+    textSecondary: '#475569',
+    textMuted: '#94A3B8',
+    textDisabled: '#CBD5E1',
 
     // Màu overlay
-    overlay: 'rgba(0, 0, 0, 0.6)',
-    modalBackground: 'rgba(15, 23, 42, 0.95)',
+    overlay: 'rgba(15, 23, 42, 0.4)',
+    modalBackground: 'rgba(15, 23, 42, 0.5)',
 
     // Slot states
-    slotAvailable: '#1E293B',
-    slotBooked: '#374151',
-    slotSelected: '#3B82F6',
-    slotDisabled: '#1F2937',
+    slotAvailable: '#FFFFFF',
+    slotBooked: '#F1F5F9',
+    slotSelected: '#2563EB',
+    slotDisabled: '#F8FAFC',
 
-    // Tòa nhà — màu badge
-    buildingA: '#8B5CF6',
-    buildingB: '#06B6D4',
-    buildingC: '#F59E0B',
-    buildingV: '#10B981',
+    // Tòa nhà — màu badge đặc trưng, hài hòa
+    buildingA: '#7C3AED',
+    buildingB: '#0284C7',
+    buildingC: '#EA580C',
+    buildingV: '#16A34A',
 } as const;
 
 export const SPACING = {
@@ -82,4 +82,4 @@ export const FONT_WEIGHT = {
 };
 
 // Chiều cao cố định của RoomCard — dùng cho getItemLayout FlatList
-export const ROOM_CARD_HEIGHT = 200;
+export const ROOM_CARD_HEIGHT = 224;

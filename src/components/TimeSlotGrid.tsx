@@ -132,23 +132,28 @@ const styles = StyleSheet.create({
         gap: SPACING.sm,
     },
     slotCard: {
-        width: '47%',
-        backgroundColor: COLORS.surface,
+        width: '48%',
+        backgroundColor: '#FFFFFF',
         borderRadius: BORDER_RADIUS.md,
-        borderWidth: 1.5,
+        borderWidth: 1,
         borderColor: COLORS.border,
         padding: SPACING.md,
         alignItems: 'center',
         gap: SPACING.xs,
     },
     slotBooked: {
-        backgroundColor: COLORS.slotDisabled,
-        borderColor: COLORS.border,
-        opacity: 0.6,
+        backgroundColor: '#F8FAFC',
+        borderColor: '#E2E8F0',
+        opacity: 0.85,
     },
     slotSelected: {
         backgroundColor: COLORS.primary,
         borderColor: COLORS.primary,
+        elevation: 2,
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
     },
     slotIconWrapper: {
         marginBottom: 2,
@@ -160,7 +165,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     slotTimeBooked: {
-        color: COLORS.textDisabled,
+        color: COLORS.textMuted,
     },
     slotTimeSelected: {
         color: '#fff',
@@ -168,12 +173,13 @@ const styles = StyleSheet.create({
     slotStatus: {
         fontSize: FONT_SIZE.xs,
         color: COLORS.success,
+        fontWeight: FONT_WEIGHT.medium,
     },
     slotStatusBooked: {
-        color: COLORS.textDisabled,
+        color: COLORS.textMuted,
     },
     slotStatusSelected: {
-        color: 'rgba(255,255,255,0.85)',
+        color: 'rgba(255,255,255,0.9)',
     },
     loadingContainer: {
         alignItems: 'center',

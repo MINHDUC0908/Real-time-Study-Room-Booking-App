@@ -272,12 +272,17 @@ const styles = StyleSheet.create({
         gap: SPACING.md,
     },
     bookingCard: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: '#FFFFFF',
         borderRadius: BORDER_RADIUS.lg,
         flexDirection: 'row',
         overflow: 'hidden',
         borderWidth: 1,
         borderColor: COLORS.border,
+        elevation: 2,
+        shadowColor: '#0F172A',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 5,
     },
     statusBar: {
         width: 4,
@@ -339,14 +344,14 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     qrBtn: {
-        backgroundColor: COLORS.primary + '15',
+        backgroundColor: '#EFF6FF',
         borderWidth: 1,
-        borderColor: COLORS.primary + '40',
+        borderColor: '#BFDBFE',
     },
     cancelBtn: {
-        backgroundColor: COLORS.error + '15',
+        backgroundColor: '#FEF2F2',
         borderWidth: 1,
-        borderColor: COLORS.error + '40',
+        borderColor: '#FECACA',
     },
     actionText: {
         fontSize: FONT_SIZE.sm,

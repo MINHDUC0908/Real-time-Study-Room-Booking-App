@@ -48,81 +48,83 @@ const RoomCard = memo<RoomCardProps>(
 
         return (
             <TouchableOpacity
-                activeOpacity={0.85}
+                activeOpacity={0.9}
                 onPress={handlePress}
                 style={styles.container}
                 accessibilityLabel={`Phòng ${room.name}, ${isAvailable ? 'Còn trống' : 'Đang sử dụng'}`}
             >
+                {/* Ảnh phòng với badge */}
                 <ImageBackground
                     source={{ uri: room.photoUrl }}
                     style={styles.image}
                     imageStyle={styles.imageStyle}
                     resizeMode="cover"
                 >
-                    {/* Gradient overlay */}
-                    <View style={styles.overlay}>
-                        {/* Header: tòa nhà + trạng thái */}
-                        <View style={styles.header}>
-                            <View style={[styles.buildingBadge, { backgroundColor: buildingColor }]}>
-                                <Text style={styles.buildingText}>Tòa {room.building}</Text>
-                            </View>
-                            <View style={[
-                                styles.statusBadge,
-                                { backgroundColor: isAvailable ? COLORS.success : COLORS.error }
-                            ]}>
-                                <View style={styles.statusDot} />
-                                <Text style={styles.statusText}>
-                                    {isAvailable ? 'Còn trống' : 'Đang dùng'}
-                                </Text>
-                            </View>
+                    <View style={styles.imageBadges}>
+                        <View style={[styles.buildingBadge, { backgroundColor: buildingColor }]}>
+                            <Text style={styles.buildingText}>Tòa {room.building}</Text>
                         </View>
-
-                        {/* Tên phòng + tầng */}
-                        <View style={styles.infoSection}>
-                            <Text style={styles.roomName} numberOfLines={1}>
-                                {room.name}
+                        <View style={[
+                            styles.statusBadge,
+                            { backgroundColor: isAvailable ? COLORS.successLight : COLORS.errorLight }
+                        ]}>
+                            <View style={[
+                                styles.statusDot,
+                                { backgroundColor: isAvailable ? COLORS.success : COLORS.error }
+                            ]} />
+                            <Text style={[
+                                styles.statusText,
+                                { color: isAvailable ? COLORS.success : COLORS.error }
+                            ]}>
+                                {isAvailable ? 'Còn trống' : 'Đang dùng'}
                             </Text>
-                            <View style={styles.metaRow}>
-                                {/* Tầng */}
-                                <View style={styles.metaItem}>
-                                    <MaterialCommunityIcons
-                                        name="office-building-outline"
-                                        size={14}
-                                        color={COLORS.textSecondary}
-                                    />
-                                    <Text style={styles.metaText}>Tầng {room.floor}</Text>
-                                </View>
-
-                                {/* Sức chứa */}
-                                <View style={styles.metaItem}>
-                                    <MaterialCommunityIcons
-                                        name="account-group-outline"
-                                        size={14}
-                                        color={COLORS.textSecondary}
-                                    />
-                                    <Text style={styles.metaText}>{room.capacity} chỗ</Text>
-                                </View>
-                            </View>
-
-                            {/* Danh sách thiết bị */}
-                            <View style={styles.equipmentRow}>
-                                {room.equipment.slice(0, 4).map((eq) => {
-                                    const info = EQUIPMENT_ICONS[eq];
-                                    return (
-                                        <View key={eq} style={styles.equipmentChip}>
-                                            <MaterialCommunityIcons
-                                                name={info.icon as any}
-                                                size={12}
-                                                color={COLORS.primaryLight}
-                                            />
-                                            <Text style={styles.equipmentText}>{info.label}</Text>
-                                        </View>
-                                    );
-                                })}
-                            </View>
                         </View>
                     </View>
                 </ImageBackground>
+
+                {/* Phần thông tin phòng phía dưới ảnh */}
+                <View style={styles.contentSection}>
+                    <View style={styles.titleRow}>
+                        <Text style={styles.roomName} numberOfLines={1}>
+                            {room.name}
+                        </Text>
+                        <View style={styles.metaRow}>
+                            <View style={styles.metaItem}>
+                                <MaterialCommunityIcons
+                                    name="office-building-marker-outline"
+                                    size={14}
+                                    color={COLORS.textSecondary}
+                                />
+                                <Text style={styles.metaText}>Tầng {room.floor}</Text>
+                            </View>
+                            <View style={styles.metaItem}>
+                                <MaterialCommunityIcons
+                                    name="account-group-outline"
+                                    size={14}
+                                    color={COLORS.textSecondary}
+                                />
+                                <Text style={styles.metaText}>{room.capacity} chỗ</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* Danh sách thiết bị */}
+                    <View style={styles.equipmentRow}>
+                        {room.equipment.slice(0, 4).map((eq) => {
+                            const info = EQUIPMENT_ICONS[eq];
+                            return (
+                                <View key={eq} style={styles.equipmentChip}>
+                                    <MaterialCommunityIcons
+                                        name={info.icon as any}
+                                        size={12}
+                                        color={COLORS.primary}
+                                    />
+                                    <Text style={styles.equipmentText}>{info.label}</Text>
+                                </View>
+                            );
+                        })}
+                    </View>
+                </View>
             </TouchableOpacity>
         );
     },
@@ -143,34 +145,35 @@ const styles = StyleSheet.create({
         marginHorizontal: SPACING.lg,
         marginVertical: SPACING.sm,
         borderRadius: BORDER_RADIUS.lg,
+        backgroundColor: COLORS.surface,
+        borderWidth: 1,
+        borderColor: COLORS.border,
         overflow: 'hidden',
-        elevation: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
+        elevation: 2,
+        shadowColor: '#0F172A',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 6,
     },
     image: {
-        flex: 1,
+        height: 120,
+        width: '100%',
     },
     imageStyle: {
-        borderRadius: BORDER_RADIUS.lg,
+        borderTopLeftRadius: BORDER_RADIUS.lg - 1,
+        borderTopRightRadius: BORDER_RADIUS.lg - 1,
     },
-    overlay: {
-        flex: 1,
-        backgroundColor: 'rgba(10, 20, 40, 0.65)',
-        padding: SPACING.lg,
-        justifyContent: 'space-between',
-    },
-    header: {
+    imageBadges: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
+        padding: SPACING.sm,
     },
     buildingBadge: {
         paddingHorizontal: SPACING.sm,
-        paddingVertical: SPACING.xs,
+        paddingVertical: 3,
         borderRadius: BORDER_RADIUS.full,
+        elevation: 1,
     },
     buildingText: {
         color: '#fff',
@@ -181,7 +184,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: SPACING.sm,
-        paddingVertical: SPACING.xs,
+        paddingVertical: 3,
         borderRadius: BORDER_RADIUS.full,
         gap: 4,
     },
@@ -189,54 +192,61 @@ const styles = StyleSheet.create({
         width: 6,
         height: 6,
         borderRadius: 3,
-        backgroundColor: '#fff',
-        opacity: 0.9,
     },
     statusText: {
-        color: '#fff',
         fontSize: FONT_SIZE.xs,
         fontWeight: FONT_WEIGHT.semibold,
     },
-    infoSection: {
-        gap: SPACING.xs,
+    contentSection: {
+        paddingHorizontal: SPACING.md,
+        paddingVertical: SPACING.sm,
+        justifyContent: 'space-between',
+        flex: 1,
+        backgroundColor: COLORS.surface,
+    },
+    titleRow: {
+        gap: 2,
     },
     roomName: {
         color: COLORS.textPrimary,
-        fontSize: FONT_SIZE.xl,
+        fontSize: FONT_SIZE.md + 1,
         fontWeight: FONT_WEIGHT.bold,
     },
     metaRow: {
         flexDirection: 'row',
-        gap: SPACING.lg,
+        gap: SPACING.md,
+        marginTop: 2,
     },
     metaItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: SPACING.xs,
+        gap: 4,
     },
     metaText: {
         color: COLORS.textSecondary,
-        fontSize: FONT_SIZE.sm,
+        fontSize: FONT_SIZE.xs,
+        fontWeight: FONT_WEIGHT.medium,
     },
     equipmentRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: SPACING.xs,
-        marginTop: SPACING.xs,
+        marginTop: 4,
     },
     equipmentChip: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        backgroundColor: '#F1F5F9',
         paddingHorizontal: SPACING.sm,
-        paddingVertical: 3,
-        borderRadius: BORDER_RADIUS.full,
+        paddingVertical: 2,
+        borderRadius: BORDER_RADIUS.sm,
         gap: 3,
         borderWidth: 1,
-        borderColor: 'rgba(59, 130, 246, 0.3)',
+        borderColor: '#E2E8F0',
     },
     equipmentText: {
-        color: COLORS.primaryLight,
-        fontSize: FONT_SIZE.xs,
+        color: COLORS.textSecondary,
+        fontSize: FONT_SIZE.xs - 1,
+        fontWeight: FONT_WEIGHT.medium,
     },
 });

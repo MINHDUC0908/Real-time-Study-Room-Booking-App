@@ -1,27 +1,32 @@
 import { Platform } from 'react-native';
 import { getNotificationTriggerDate } from '../utils/timeSlot';
 
-// Lazy-load expo-notifications để tránh crash trong Expo Go (SDK 53+)
-// Expo Go đã xóa remote push token registration — gây crash khi import trực tiếp.
-// Giải pháp: dùng require() bọc trong try-catch, degrade gracefully.
+import Constants, { ExecutionEnvironment } from 'expo-constants';
+
+// Kiểm tra môi trường Expo Go hoặc Web để tránh require module native gây cảnh báo/crash
+const isExpoGo =
+    Constants.executionEnvironment === ExecutionEnvironment.StoreClient ||
+    (Constants as any).appOwnership === 'expo';
+
 let Notifications: typeof import('expo-notifications') | null = null;
 
-try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    Notifications = require('expo-notifications');
+if (!isExpoGo && Platform.OS !== 'web') {
+    try {
+        // Chỉ nạp khi chạy native development build thật
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        Notifications = require('expo-notifications');
 
-    // Cấu hình handler hiển thị notification khi app đang foreground
-    Notifications?.setNotificationHandler({
-        handleNotification: async () => ({
-            shouldPlaySound: true,
-            shouldSetBadge: false,
-            shouldShowBanner: true,
-            shouldShowList: true,
-        }),
-    });
-} catch (_err) {
-    // Chạy trong Expo Go → không hỗ trợ notifications
-    console.warn('[Notification] expo-notifications không khả dụng (Expo Go). Chạy development build để dùng thông báo.');
+        Notifications?.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldPlaySound: true,
+                shouldSetBadge: false,
+                shouldShowBanner: true,
+                shouldShowList: true,
+            }),
+        });
+    } catch (_err) {
+        Notifications = null;
+    }
 }
 
 /**
